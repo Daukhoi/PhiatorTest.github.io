@@ -212,7 +212,7 @@
                 </div>
 
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">答题完成！</h2>
-                <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mb-6">根据系统客观判卷计算，您的最终成绩如下：</p>
+                <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mb-6">请导出TXT发送给审核</p>
 
                 <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-slate-900/50 dark:to-blue-950/30 rounded-2xl p-6 mb-6 border border-slate-200/60 dark:border-slate-700/60 max-w-sm mx-auto">
                     <div class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">最终得分</div>
@@ -298,23 +298,99 @@
     </div>
 
     <script>
-        /* ================= 题库数据 ================= */
         const defaultQuizData = [
             {
                 "id": 1,
                 "type": "single",
-                "title": "下列哪个元素属于元素周期表中的稀有气体？",
-                "options": ["A. 氧气 (O)", "B. 氦气 (He)", "C. 氢气 (H)", "D. 氮气 (N)"],
-                "answer": "B"
+                "title": "你有听说过Phiator需要支付后才能使用吗？",
+                "options": ["A. 肯定知道啊，想要写谱子就肯定要付款啊！", "B. 这个价格太贵了，1块钱或许我还能接受......？", "C. 放屁，这个根本不需要付钱，禁止用制谱器盈利", "D. 算了算了不用了，我还是去玩Pigurousi吧"],
+                "answer": "C"
             },
             {
                 "id": 2,
-                "type": "multiple",
-                "title": "以下哪些属于 Web 前端开发的核心基础技术？（多选）",
-                "options": ["A. HTML", "B. CSS", "C. JavaScript", "D. Python"],
-                "answer": ["A", "B", "C"]
+                "type": "single",
+                "title": "BPM 120表示什么意思？",
+                "options": ["A. 歌曲时长120秒", "B. 每分钟120拍", "C. 每分钟120个note", "D. 谱面难度120"],
+                "answer": "B"
             },
             {
+                "id": 3,
+                "type": "single",
+                "title": "目前phi自制主流制谱器是？",
+                "options": ["A. Re:PhiEdit", "B. T-PhiEdit", "C. Phiator: Reborn", "D. 2573Editor"],
+                "answer": "A"
+            },
+            {
+                "id": 4,
+                "type": "single",
+                "title": "某谱师将游戏《Phigros》中的官方曲目提取音频文件，制作成自制谱面在第三方模拟器上发布。该行为主要侵犯了哪一方的权利？",
+                "options": ["A. 仅侵犯游戏开发商鸽游的软件著作权", "B. 仅侵犯曲作者的音乐作品著作权", "C. 可能同时侵犯曲作者的音乐作品著作权和游戏开发商的相关权益", "D. 不构成侵权，因为曲目已在游戏中公开"],
+                "answer": "C"
+            },
+            {
+                "id": 5,
+                "type": "single",
+                "title": "某玩家未经曲作者许可，将一首流行歌曲制作成音游自制谱面，并上传至谱面分享平台供他人下载。该玩家制作谱面的行为，主要涉及著作权人的哪项权利？",
+                "options": ["A. 发表权", "B. 改编权", "C. 保护作品完整权", "D. 出租权"],
+                "answer": "B"
+            },
+            {
+                "id": 6,
+                "type": "single",
+                "title": "某玩家购买了某曲师在平台以“CC BY-NC 4.0”许可发布的曲目，将其制作成自制谱面并上传至公开平台供人免费下载游玩。该行为：",
+                "options": ["A. <b>一定构成侵权</b>，因为CC许可不允许制作谱面", "B. <b>通常不构成侵权</b>，但需遵守CC BY-NC许可中的署名和非商业性要求", "C. <b>不构成侵权</b>，因为CC许可等同于放弃全部著作权", "D. <b>构成侵权</b>，因为CC许可仅适用于原曲的复制，不适用于改编"],
+                "answer": "B"
+            },
+            {
+                "id": 7,
+                "type": "single",
+                "title": "下面哪个文件格式不可用于谱面的音频文件",
+                "options": ["A. MP3", "B. OGG", "C. MP4", "D. WAV"],
+                "answer": "C"
+            },
+            {
+                "id": 8,
+                "type": "single",
+                "title": "当你审核未通过时，应该如何处理？",
+                "options": ["A. 去网上找破解版", "B. 询问原因并加以改正", "C. 大骂审核", "D. 放置不管，认为已经通过", "E. 从网上找谱面", "F. 用AI写谱面"],
+                "answer": "B"
+            },
+
+
+
+
+            {
+                "id": 9,
+                "type": "multiple",
+                "title": "社区音游有：（多选）",
+                "options": ["A. Malody", "B. Osu!", "C. Arcaea", "D. Phigros"],
+                "answer": ["A", "B"]
+            },
+            {
+                "id": 10,
+                "type": "multiple",
+                "title": "下列音游自制谱面相关行为中，可能构成侵犯著作权的有？（多选）",
+                "options": ["A. 未经曲作者许可，将商业歌曲制作成自制谱面并公开分享", "B.  将已购买的正版游戏中的独占曲目提取后制作自制谱面，在非官方模拟器上发布", "C. 在个人电脑上为自己游玩方便，将已购买的正版曲目制作成自制谱面，未对外分享", "D. 未经许可，将他人制作的自制谱面文件打包出售"],
+                "answer": ["A", "B", "D"]
+            },
+            {
+                "id": 11,
+                "type": "multiple",
+                "title": "关于音游自制谱面中“合理使用”的认定，下列说法正确的有？（多选）",
+                "options": ["A. 为个人学习、研究目的，在本地制作少量自制谱面且不对外传播，通常属于合理使用", "B.  非商业性的同人谱面分享，在任何情况下都属于合理使用", "C. 合理使用的认定需综合考虑使用目的、使用比例、对原作品市场的影响等因素", "D. 以营利为目的制作和分发自制谱面，通常难以主张合理使用"],
+                "answer": ["A", "C", "D"]
+            },
+
+            {
+                "id": 12,
+                "type": "text",
+                "title": "Phigros第九章密钥为：",
+                "image": "https://i0.hdslb.com/bfs/new_dyn/a908bc923fc4a06cff2e11aae5ee91dd3546722911390365.jpg"
+            }
+
+
+
+            /*{
                 "id": 3,
                 "type": "single",
                 "title": "请观察下图中的建筑样式，并在选项图片中选出与其属于同一建筑风格的代表作：",
@@ -347,7 +423,7 @@
                 "type": "text",
                 "title": "请分析下图所示电路图的工作原理，并说明如果闭合开关 S1 会对电路产生什么影响：",
                 "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
-            }
+            }*/
         ];
 
         /* ================= 全局状态 ================= */
@@ -575,7 +651,7 @@
                     placeholder="请在此处输入您的作答内容..."
                     class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-700/30 p-4 text-sm leading-relaxed text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 resize-y">${escapeHtml(saved)}</textarea>
                 <div class="flex items-center justify-between text-xs text-slate-400">
-                    <span><i class="fa-solid fa-keyboard mr-1"></i>主观题，不计入客观判卷总分</span>
+                    <span><i class="fa-solid fa-keyboard mr-1"></i>主观题</span>
                     <span>已输入 <span id="textAnswerCount">${saved.trim().length}</span> 字</span>
                 </div>
             `;
@@ -678,8 +754,8 @@
             const unanswered = questions.length - done;
 
             const msg = unanswered > 0
-                ? `您还有 ${unanswered} 道题未回答，确定要现在提交试卷吗？提交后将立即判卷。`
-                : '确认提交试卷吗？提交后将立即判卷。';
+                ? `您还有 ${unanswered} 道题未回答，确定要现在提交试卷吗？`
+                : '确认提交试卷吗？';
 
             showConfirm(msg, submitQuiz, '确定提交');
         }
@@ -755,7 +831,7 @@
 
             const pct = maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
             document.getElementById('scoreRatingText').textContent =
-                `正确率 ${pct}%` + (pendingCount > 0 ? `（另有 ${pendingCount} 道主观题待人工批阅）` : '');
+                `正确率 ${pct}%` + (pendingCount > 0 ? `（另有 ${pendingCount} 道主观题待人工审核）` : '');
 
             document.getElementById('correctCountText').textContent = `${correctCount} 题`;
             document.getElementById('wrongCountText').textContent = `${wrongCount} 题`;
@@ -808,7 +884,7 @@
         /* ================= 导出成绩 ================= */
         function exportToTxt() {
             let txtContent = `=====================================\n`;
-            txtContent += `      现代在线答题系统 - 成绩单      \n`;
+            txtContent += `      成绩单      \n`;
             txtContent += `=====================================\n`;
             txtContent += `生成时间: ${new Date().toLocaleString()}\n`;
             txtContent += `最终得分: ${document.getElementById('finalScoreDisplay').textContent} / ${document.getElementById('maxScoreDisplay').textContent}（客观题）\n`;
